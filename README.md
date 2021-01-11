@@ -1,5 +1,10 @@
 ## PingPong: End-to-end latency measurement for Matrix
 
+![build](https://github.com/p-e-w/pingpong/workflows/build/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/p-e-w/pingpong)](https://goreportcard.com/report/github.com/p-e-w/pingpong)
+![GPL-3.0 License](https://img.shields.io/github/license/p-e-w/pingpong)
+[![#pingpong:matrix.org](https://img.shields.io/matrix/pingpong:matrix.org?label=%23pingpong%3Amatrix.org)](https://matrix.to/#/#pingpong:matrix.org)
+
 PingPong measures transport latencies on [Matrix](https://matrix.org/) networks.
 It connects to two Matrix accounts simultaneously, and bounces messages
 back and forth between them. It aggregates all information in an intuitive
