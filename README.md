@@ -10,6 +10,8 @@ It connects to two Matrix accounts simultaneously, and bounces messages
 back and forth between them. It aggregates all information in an intuitive
 terminal user interface, and automatically computes statistics.
 
+![Screenshot](https://user-images.githubusercontent.com/2702526/104276628-481ebb80-54cb-11eb-8b13-dc53378a6c08.png)
+
 PingPong aims to be a good citizen on homeservers. It gracefully recovers
 from various temporary error conditions, has built-in rate limiting mechanisms,
 and cleans up after itself to the maximum extent possible in the Matrix
