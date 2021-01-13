@@ -1,4 +1,4 @@
-// PingPong: End-to-end latency measurement for Matrix
+// PingPong: End-to-end latency monitoring for Matrix
 // Copyright (C) 2021  Philipp Emanuel Weidmann <pew@worldwidemann.com>
 //
 // This program is free software: you can redistribute it and/or modify

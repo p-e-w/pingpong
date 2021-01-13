@@ -1,4 +1,4 @@
-## PingPong: End-to-end latency measurement for Matrix
+## PingPong: End-to-end latency monitoring for Matrix
 
 ![build](https://github.com/p-e-w/pingpong/workflows/build/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/p-e-w/pingpong)](https://goreportcard.com/report/github.com/p-e-w/pingpong)
@@ -35,6 +35,58 @@ go run . --help
 
 This prints a help message explaining the command line interface,
 which is all you need to know in order to start using PingPong.
+
+
+## What it measures
+
+The **total time** metric represents the time from a message being
+prepared and sent by the sender to the message having been received,
+parsed, and processed by the recipient. Preparation, parsing, and
+processing should take on the order of microseconds in most cases,
+so this is the end-to-end transport latency for practical purposes.
+This time is calculated using a single local monotonic clock and is
+therefore *always* accurate.
+
+The **client -> server** metric is the time from a message being
+prepared and sent to the message being forwarded by the sender's
+homeserver to the recipient's homeserver, as indicated by the event's
+`origin_server_ts` field. Note that the send time is measured by
+the local clock whereas the `origin_server_ts` field is populated
+using the homeserver's clock. Therefore, the accuracy of this metric
+depends on how closely those two clocks are synchronized.
+
+The **server -> server** metric is the time from a message being
+forwarded by the sender's homeserver to the message being processed
+by the recipient's homeserver, as indicated by the event's
+`unsigned.age` field. The accuracy of this metric depends on how
+closely the two homeservers' clocks are synchronized.
+
+The **server -> client** metric is the time from a message being
+processed by the recipient's homeserver to the message having been
+received, parsed, and processed by the recipient, as indicated by
+a combination of the event's `origin_server_ts` and `unsigned.age`
+fields. The accuracy of this metric depends on how closely the
+local clock and the two homeservers' clocks are synchronized.
+
+PingPong performs basic sanity checks on those metrics, and if they
+indicate that any clocks are out of sync or the event's timestamps are
+otherwise unreliable, breakdown metrics are not displayed.
+
+
+## Similar projects
+
+[echo](https://github.com/maubot/echo) is a Matrix bot that replies with
+timing information when sent a ping message. It is used to generate the
+ping ranking in the "This Week in Matrix" blog posts.
+
+[matrix-monitor-bot](https://github.com/turt2live/matrix-monitor-bot) is
+another Matrix bot that measures message latency, and serves the results
+as Prometheus metrics, suitable for integration into an existing monitoring
+solution.
+
+These bots work, but I wanted a traditional command line tool with
+everything included, zero configuration required, and a beautiful
+terminal UI. That is what PingPong tries to be.
 
 
 ## License
