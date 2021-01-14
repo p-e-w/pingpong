@@ -25,16 +25,26 @@ and [Kong](https://github.com/alecthomas/kong) packages.
 
 ## Installation and usage
 
-PingPong requires Go (Golang) to build. The build process is simple:
+PingPong requires Go (Golang) to build. Installing PingPong is simple:
 
 ```
-git clone https://github.com/p-e-w/pingpong.git
-cd pingpong
-go run . --help
+go get github.com/p-e-w/pingpong
 ```
 
-This prints a help message explaining the command line interface,
-which is all you need to know in order to start using PingPong.
+Make sure your `$GOPATH/bin` directory is in your `$PATH`; you should
+now be able to run PingPong with
+
+```
+pingpong @user1:homeserver1.org:password1 @user2:homeserver2.org:password2
+```
+
+Run
+
+```
+pingpong --help
+```
+
+for a complete description of the command line interface.
 
 
 ## What it measures
