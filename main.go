@@ -108,7 +108,7 @@ func main() {
 	one.log("created room %v", roomID)
 	defer leave(&one)
 
-	_, err = two.JoinRoom(string(roomID), "", nil)
+	_, err = two.JoinRoom(string(roomID), one.homeserver, nil)
 	if err != nil {
 		two.fatal("unable to join room %v: %v", roomID, err)
 	}
